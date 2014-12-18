@@ -1,0 +1,50 @@
+# This file managed by Puppet
+global
+<% @global_options.sort.each do |key,val| -%>
+<% if val.is_a?(Array) -%>
+<% val.each do |item| -%>
+   <%= key %>  <%= item %>
+  <% end -%>
+<% else -%>
+   <%= key %>  <%= val %>
+  <% end -%>
+<% end -%>
+
+defaults
+<% @defaults_options.sort.each do |key,val| -%>
+<% if val.is_a?(Array) -%>
+  <% val.each do |item| -%>
+   <%= key %>  <%= item %>
+  <% end -%>
+<% else -%>
+  <%= key %>  <%= val %>
+  <% end -%>
+<% end -%>
+
+#Frontend
+
+
+frontend main *:<%= @port %>
+  option httpclose
+
+
+<% @backend_services.each do |key,val| -%>
+<% if key == "nginx" -%>
+use_backend <%= key %>
+<%else -%>
+acl <%= key %> path_end -i /<%= key %>
+use_backend <%= key %>
+<% end -%>
+<% end -%>
+
+
+
+<% @backend_services.each do |key,val| -%>
+backend <%= key %>
+  mode <%= @mode %>
+  balance <%= @balance_mode %>
+  timeout server <%= @timeout_server %>
+  timeout connect <%= @timeout_conn %>
+server  <%= @hostname %> <%= @ipaddress_lo %>:<%=val %>
+
+<% end -%>
