@@ -60,7 +60,7 @@ class haproxy::params {
           'connect 10s',
           'client 1m',
           'server 1m',
-          'check 10s',
+          'check 1m',
           ],
           'maxconn' => '8000'
       }
