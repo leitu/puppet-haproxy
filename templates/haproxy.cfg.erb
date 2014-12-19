@@ -33,7 +33,7 @@ frontend main *:<%= @port %>
 use_backend <%= key %>
 <%else -%>
 acl <%= key %> path_end -i /<%= key %>
-use_backend <%= key %>
+use_backend <%= key %> if <%= key %>
 <% end -%>
 <% end -%>
 
