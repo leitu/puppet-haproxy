@@ -45,7 +45,7 @@ class haproxy (
     { fail('service_ensure parameter must be running, stopped, true, or false')
     }
   }
-  validate_string($package_name,$package_ensure)
+  validate_string($package_ensure)
 
   anchor { 'haproxy::begin': }
   ~> class { 'haproxy::install':  }
