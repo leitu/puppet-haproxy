@@ -36,18 +36,18 @@
 # Copyright 2014 Your name here, unless otherwise noted.
 #
 class haproxy (
-  $package_ensure = 'present',
-  $package_name   = $haproxy::params::package_name,
-  $service_ensure = 'running',
-  $global_options = $haproxy::params::global_options,
-  $default_options = $haproxy::params::defaults_options,
+  $package_ensure   = 'present',
+  $package_name     = $haproxy::params::package_name,
+  $service_ensure   = 'running',
+  $global_options   = $haproxy::params::global_options,
+  $default_options  = $haproxy::params::defaults_options,
   $backend_services = $haproxy::params::backend_services,
-  $port            = $haproxy::params::port,
-  $mode            = $haproxy::params::mode,
-  $balance_mode    = $haproxy::params::balance_mode,
-  $timeout_server  = $haproxy::params::timeout_server,
-  $timeout_conn    = $haproxy::params::timeout_conn,
-  $hostname        = $haproxy::params::hostname,
+  $port             = $haproxy::params::port,
+  $mode             = $haproxy::params::mode,
+  $balance_mode     = $haproxy::params::balance_mode,
+  $timeout_server   = $haproxy::params::timeout_server,
+  $timeout_conn     = $haproxy::params::timeout_conn,
+  $hostname         = $haproxy::params::hostname,
 ) inherits haproxy::params {
 
   if $service_ensure != true and $service_ensure != false {
